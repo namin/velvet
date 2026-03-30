@@ -377,7 +377,7 @@ elab_rules : command
   let nm := name.getId
   let nm' := nm.updatePrefix ns
   let methodConstInfo := env.constants.find! nm'
-  velvetObligations.modify (·.insert name.getId obligation)
+  modifyEnv (velvetObligations.addEntry · (name.getId, obligation))
   velvetTestingContextMap.modify (·.insert name.getId testingCtx)
 
 notation "{" P "}" c "{" v "," Q "}" => triple P c (fun v => Q)
