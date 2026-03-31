@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Clone Loom fork
+        run: git clone https://github.com/namin/loom.git -b lemma ../loom
       - uses: leanprover/lean-action@v1
         with:
           use-github-cache: false
