@@ -250,6 +250,15 @@ partial def expandLeafnyDoSeqItem (modIds : Array Ident) (stx : doSeqItem) (insi
       $[done_with $inv_done]?
       $[decreasing $measure]?
       do $doSeq*)]
+  | `(Term.doSeqItem| for $x:ident in $t:term
+      $[invariant $[$invName:str]? $inv:term
+      ]*
+      do $doSeq:doSeq) =>
+    let doSeq <- expandLeafnyDoSeq modIds doSeq (insideLoop:=true)
+    return #[<-`(Term.doSeqItem| for $x:ident in $t:term
+      $[invariant $[$invName:str]? $inv:term
+      ]*
+      do $doSeq*)]
   | _ => pure #[stx]
 end
 private def Array.andListWithName (ts : Array (TSyntax `term)) (name_prefix : TSyntax `name) : TermElabM (TSyntax `term) := do

@@ -1,7 +1,8 @@
 import Lake
 open Lake DSL System
 
-require Loom from git "https://github.com/verse-lab/loom.git" @ "master"
+-- Requires local ../loom checkout: namin/loom branch lemma
+require Loom from ".." / "loom"
 
 package Velvet where
   leanOptions := #[⟨`pp.unicode.fun, true⟩]
