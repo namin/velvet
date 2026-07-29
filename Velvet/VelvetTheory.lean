@@ -214,3 +214,29 @@ lemma VelvetM.extract_spec {α : Type} (x : VelvetM α) [Inhabited α] (post : �
   aesop
 
 end TotalCorrectness.DemonicChoice
+
+section
+open PartialCorrectness AngelicChoice
+
+@[loomSpec]
+abbrev pickEx [Inhabited α] : WPGen (m := VelvetM) (pick α) := {
+  get post := ∃ x, post x
+  prop := by
+    rintro post ⟨x, posth⟩;
+    rw [MonadNonDet.wp_pick]
+    simp [iSup]; exists True; grind
+}
+end
+
+section
+open PartialCorrectness DemonicChoice
+
+@[loomSpec]
+abbrev pickEx' [Inhabited α] : WPGen (m := VelvetM) (pick α) := {
+  get post := ∀ x, post x
+  prop := by
+    rintro post posth;
+    rw [MonadNonDet.wp_pick]
+    simp [iInf]; grind
+}
+end

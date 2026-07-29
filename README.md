@@ -16,7 +16,7 @@ Main features:
 
 * **Access to mathlib** -- use Lean's rich ecosystem of formalised mathematics in program specifications and proofs
 
-For a detailed description of Velvet, see the [paper](paper.pdf).
+For a detailed description of Velvet, see the [paper](https://ilyasergey.net/assets/pdf/papers/velvet-cav26.pdf).
 
 ## Using Velvet
 
@@ -33,7 +33,7 @@ Velvet requires [Lean 4](https://github.com/leanprover/lean4). We have tested Ve
 To build Velvet, run:
 
 ```bash
-lake build
+lake exe cache get; lake build
 ```
 
 <details close>
